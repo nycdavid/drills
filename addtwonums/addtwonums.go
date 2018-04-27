@@ -26,8 +26,9 @@ func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
 	list := &List{Head: node}
 
 	for i := 1; i < len(strSum); i++ {
-		num, _ := strconv.Atoi(string(strSum[0]))
-		node = &ListNode{Val: num, Next: list.Head}
+		num, _ := strconv.Atoi(string(strSum[i]))
+		headNode := list.Head
+		node = &ListNode{Val: num, Next: headNode}
 		list.Head = node
 	}
 

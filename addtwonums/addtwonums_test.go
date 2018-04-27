@@ -19,7 +19,7 @@ func TestAddTwoNumbers(t *testing.T) {
 	resList := addTwoNumbers(listAHead, listBHead)
 	var values []int
 	// answer is 975
-	for mrkr := resList; mrkr != nil; mrkr = resList.Next {
+	for mrkr := resList; mrkr != nil; mrkr = mrkr.Next {
 		values = append(values, mrkr.Val)
 	}
 
