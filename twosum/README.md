@@ -8,5 +8,8 @@
   at one time.
   * This makes the run time `O(n)` rather than `O(n^2)`
 
-__Key Takeaway__: Always try to look for ways to __NOT__ nest a loop. `O(n^2)`
-  should be *worst-case scenario*
+__Key Takeaways__:
+  * Always try to look for ways to __NOT__ nest a loop. `O(n^2)` should be
+  *worst-case scenario*
+  * Think of edge cases. The hash table solution doesn't work when we have
+  repeated elements in the array.

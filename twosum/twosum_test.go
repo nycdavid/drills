@@ -11,6 +11,7 @@ func TestTwoSum(t *testing.T) {
 		{"testSlc": []int{1, 2, 3}, "target": 5, "idxs": []int{1, 2}},
 		{"testSlc": []int{3, 2, 5}, "target": 5, "idxs": []int{0, 1}},
 		{"testSlc": []int{4, 1, 10}, "target": 5, "idxs": []int{0, 1}},
+		{"testSlc": []int{3, 3}, "target": 6, "idxs": []int{0, 1}},
 	}
 
 	for _, testCase := range testCases {
