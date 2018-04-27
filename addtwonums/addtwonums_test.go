@@ -7,14 +7,9 @@ import (
 
 func TestAddTwoNumbers(t *testing.T) {
 	// 321
-	listATail := &ListNode{Val: 3, Next: nil}
-	listAn1 := &ListNode{Val: 2, Next: listATail}
-	listAHead := &ListNode{Val: 1, Next: listAn1}
-
+	listAHead := NewReverseList(321)
 	// 654
-	listBTail := &ListNode{Val: 6, Next: nil}
-	listBn1 := &ListNode{Val: 5, Next: listBTail}
-	listBHead := &ListNode{Val: 4, Next: listBn1}
+	listBHead := NewReverseList(654)
 
 	resList := addTwoNumbers(listAHead, listBHead)
 	var values []int
@@ -33,14 +28,42 @@ func TestAddTwoNumbers(t *testing.T) {
 }
 
 func TestListToNum(t *testing.T) {
-	listATail := &ListNode{Val: 3, Next: nil}
-	listAn1 := &ListNode{Val: 2, Next: listATail}
-	listAHead := &ListNode{Val: 1, Next: listAn1}
-
+	listAHead := NewReverseList(321)
 	number := listToNum(listAHead)
 
 	if number != 321 {
 		msg := fmt.Sprintf("Expected number to be 321, got %d", number)
+		t.Error(msg)
+	}
+}
+
+func TestLargeNumbers(t *testing.T) {
+	op1 := 1234567
+	op2 := 2345678
+	listA := NewReverseList(op1)
+	listB := NewReverseList(op2)
+	resList := addTwoNumbers(listA, listB)
+	result := listToNum(resList)
+
+	expectedSum := op1 + op2
+	if result != expectedSum {
+		msg := fmt.Sprintf("Expected results to be %d, but got %d", expectedSum, result)
+		t.Error(msg)
+	}
+}
+
+func TestNegativeOperands(t *testing.T) {
+	op1 := 10
+	op2 := -5
+	listA := NewReverseList(op1)
+	listB := NewReverseList(op2)
+	expectedSum := op1 + op2
+
+	resList := addTwoNumbers(listA, listB)
+	result := listToNum(resList)
+
+	if result != expectedSum {
+		msg := fmt.Sprintf("Expected results to be %d, but got %d", expectedSum, result)
 		t.Error(msg)
 	}
 }

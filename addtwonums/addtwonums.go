@@ -6,11 +6,6 @@ import (
 	"strconv"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 type List struct {
 	Head *ListNode
 }
