@@ -2,7 +2,6 @@ package addtwonums
 
 import (
 	"bytes"
-	"log"
 	"strconv"
 )
 
@@ -11,26 +10,38 @@ type List struct {
 }
 
 func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
-	operand1 := listToNum(ln1)
-	operand2 := listToNum(ln2)
-	sum := operand1 + operand2
-	strSum := strconv.Itoa(sum)
+	var newNode *ListNode
+	var prevNode *ListNode
+	var head *ListNode
+	carry := 0
 
-	num, _ := strconv.Atoi(string(strSum[0]))
-	node := &ListNode{Val: num, Next: nil}
-	list := &List{Head: node}
+	mrkr2 := ln2
+	for mrkr1 := ln1; mrkr1 != nil; mrkr1 = mrkr1.Next {
+		num1 := mrkr1.Val
+		num2 := mrkr2.Val
 
-	for i := 1; i < len(strSum); i++ {
-		num, _ := strconv.Atoi(string(strSum[i]))
-		headNode := list.Head
-		node = &ListNode{Val: num, Next: headNode}
-		list.Head = node
+		newNum := num1 + num2
+		var nodeNum int
+		if newNum > 9 {
+			carry = newNum - 10
+			nodeNum = newNum - carry
+		} else {
+			nodeNum = newNum + carry
+		}
+		newNode = &ListNode{Val: nodeNum, Next: nil}
+
+		if prevNode != nil {
+			prevNode.Next = newNode
+		} else {
+			head = newNode
+		}
+		prevNode = newNode
+		mrkr2 = mrkr2.Next
 	}
-
-	return list.Head
+	return head
 }
 
-func listToNum(list *ListNode) int {
+func listToNum(list *ListNode) string {
 	var values []int
 	for mrkr := list; mrkr != nil; mrkr = mrkr.Next {
 		values = append(values, mrkr.Val)
@@ -41,11 +52,5 @@ func listToNum(list *ListNode) int {
 		idx := i - 1
 		buf.WriteString(strconv.Itoa(values[idx]))
 	}
-	num, err := strconv.Atoi(buf.String())
-
-	if err != nil {
-		log.Print(err)
-		panic(err)
-	}
-	return num
+	return buf.String()
 }

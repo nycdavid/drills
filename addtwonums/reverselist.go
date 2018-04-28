@@ -10,13 +10,12 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func NewReverseList(operand int) *ListNode {
-	strOperand := strconv.Itoa(operand)
-	node := createNode(strOperand[0])
+func NewReverseList(operand string) *ListNode {
+	node := createNode(operand[0])
 	var prevNode *ListNode
-	for i := 1; i < len(strOperand); i++ {
+	for i := 1; i < len(operand); i++ {
 		prevNode = node
-		node = createNode(strOperand[i])
+		node = createNode(operand[i])
 		node.Next = prevNode
 	}
 	return node
