@@ -20,15 +20,14 @@ func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
 		num1 := mrkr1.Val
 		num2 := mrkr2.Val
 
-		newNum := num1 + num2
-		var nodeNum int
+		newNum := num1 + num2 + carry
 		if newNum > 9 {
-			carry = newNum - 10
-			nodeNum = newNum - carry
+			carry = 1
+			newNum = newNum - 10
 		} else {
-			nodeNum = newNum + carry
+			carry = 0
 		}
-		newNode = &ListNode{Val: nodeNum, Next: nil}
+		newNode = &ListNode{Val: newNum, Next: nil}
 
 		if prevNode != nil {
 			prevNode.Next = newNode
@@ -37,6 +36,11 @@ func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
 		}
 		prevNode = newNode
 		mrkr2 = mrkr2.Next
+	}
+	if carry != 0 {
+		carry = 0
+		newNode = &ListNode{Val: 1, Next: nil}
+		prevNode.Next = newNode
 	}
 	return head
 }
