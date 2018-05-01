@@ -5,20 +5,15 @@ import (
 	"strconv"
 )
 
-type List struct {
-	Head *ListNode
-}
-
 func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
 	var newNode *ListNode
 	var prevNode *ListNode
 	var head *ListNode
 	carry := 0
 
-	mrkr2 := ln2
-	for mrkr1 := ln1; mrkr1 != nil; mrkr1 = mrkr1.Next {
-		num1 := mrkr1.Val
-		num2 := mrkr2.Val
+	for mrkr1, mrkr2 := ln1, ln2; continueLoop(mrkr1, mrkr2); mrkr1, mrkr2 = iterator(mrkr1, mrkr2) {
+		num1 := assignVal(mrkr1)
+		num2 := assignVal(mrkr2)
 
 		newNum := num1 + num2 + carry
 		if newNum > 9 {
@@ -35,8 +30,8 @@ func addTwoNumbers(ln1 *ListNode, ln2 *ListNode) *ListNode {
 			head = newNode
 		}
 		prevNode = newNode
-		mrkr2 = mrkr2.Next
 	}
+
 	if carry != 0 {
 		carry = 0
 		newNode = &ListNode{Val: 1, Next: nil}
@@ -57,4 +52,29 @@ func listToNum(list *ListNode) string {
 		buf.WriteString(strconv.Itoa(values[idx]))
 	}
 	return buf.String()
+}
+
+func iterator(mrkr1 *ListNode, mrkr2 *ListNode) (*ListNode, *ListNode) {
+	if mrkr1 != nil {
+		mrkr1 = mrkr1.Next
+	}
+	if mrkr2 != nil {
+		mrkr2 = mrkr2.Next
+	}
+	return mrkr1, mrkr2
+}
+
+func continueLoop(mrkr1 *ListNode, mrkr2 *ListNode) bool {
+	if mrkr1 == nil && mrkr2 == nil {
+		return false
+	}
+	return true
+}
+
+func assignVal(mrkr *ListNode) int {
+	if mrkr == nil {
+		return 0
+	} else {
+		return mrkr.Val
+	}
 }
