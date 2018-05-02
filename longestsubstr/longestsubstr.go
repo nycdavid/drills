@@ -26,16 +26,18 @@ func (sub *Substring) Count() int {
 }
 
 func lengthOfLongestSubstring(str string) int {
-	recordHolder := &Substring{}
 	newSub := &Substring{}
+	recordHolder := newSub
+
 	for _, chr := range str {
 		if !newSub.Exists(string(chr)) {
 			newSub.Add(string(chr))
 		} else {
-			if newSub.Count() >= recordHolder.Count() {
-				recordHolder = newSub
-				newSub = &Substring{}
-			}
+			newSub = &Substring{}
+			newSub.Add(string(chr))
+		}
+		if newSub.Count() >= recordHolder.Count() {
+			recordHolder = newSub
 		}
 	}
 	return recordHolder.Count()
