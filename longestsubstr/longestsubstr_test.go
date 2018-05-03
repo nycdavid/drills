@@ -23,3 +23,17 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		}
 	}
 }
+
+func TestContinueAfterDuplicateChar(t *testing.T) {
+	cases := map[string]int{
+		"anviaj": 5,
+	}
+	for substring, lgth := range cases {
+		res := lengthOfLongestSubstring(substring)
+
+		if res != lgth {
+			msg := fmt.Sprintf("Expected substring %s to be %d, got %d", substring, lgth, res)
+			t.Error(msg)
+		}
+	}
+}

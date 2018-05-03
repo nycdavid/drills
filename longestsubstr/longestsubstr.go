@@ -3,8 +3,7 @@ package longestsubstr
 import ()
 
 type Substring struct {
-	els  map[string]int
-	Last string
+	els map[string]int
 }
 
 func (sub *Substring) Exists(el string) bool {
@@ -34,12 +33,13 @@ func lengthOfLongestSubstring(str string) int {
 		if !newSub.Exists(string(chr)) {
 			newSub.Add(string(chr))
 		} else {
-			last := newSub.Last
-			newSub = &Substring{}
-			newSub.Add(last)
+			// last := newSub.Last
+			// newSub = &Substring{}
+			// newSub.Add(last)
+			// newSub.Add(string(chr))
+			delete(newSub.els, string(chr))
 			newSub.Add(string(chr))
 		}
-		newSub.Last = string(chr)
 		if newSub.Count() >= recordHolder.Count() {
 			recordHolder = newSub
 		}
