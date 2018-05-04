@@ -7,13 +7,14 @@ import (
 
 func TestLengthOfLongestSubstring(t *testing.T) {
 	cases := map[string]int{
-		"abcabcbb": 3,
-		"bbbbb":    1,
-		"pwwkew":   3,
 		"c":        1,
+		"bbbbb":    1,
 		"aab":      2,
+		"abcabcbb": 3,
+		"pwwkew":   3,
 		"dvdf":     3,
 	}
+
 	for substring, lgth := range cases {
 		res := lengthOfLongestSubstring(substring)
 
@@ -26,7 +27,9 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 
 func TestContinueAfterDuplicateChar(t *testing.T) {
 	cases := map[string]int{
-		"anviaj": 5,
+		"anviaj":          5,
+		"anviajbc":        7,
+		"anviajbcapolice": 6,
 	}
 	for substring, lgth := range cases {
 		res := lengthOfLongestSubstring(substring)
