@@ -2,7 +2,7 @@ package longestsubstr
 
 import ()
 
-func lengthOfLongestSubstring(str string) int {
+func lngthOfLongestSubstring(str string) (int, *Substring) {
 	substr := &Substring{}
 	for _, chr := range str {
 		el := string(chr)
@@ -25,5 +25,5 @@ func lengthOfLongestSubstring(str string) int {
 	// 	}
 	// }
 	// return recordHolder.Count()
-	return substr.Count()
+	return substr.Count(), substr
 }

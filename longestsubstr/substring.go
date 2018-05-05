@@ -1,5 +1,9 @@
 package longestsubstr
 
+import (
+	"strings"
+)
+
 type Substring struct {
 	els []string
 }
@@ -28,4 +32,8 @@ func (sub *Substring) Last() string {
 
 func (sub *Substring) Count() int {
 	return len(sub.els)
+}
+
+func (sub *Substring) String() string {
+	return strings.Join(sub.els, "")
 }

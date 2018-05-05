@@ -65,3 +65,17 @@ func TestCount(t *testing.T) {
 		t.Error(msg)
 	}
 }
+
+func TestString(t *testing.T) {
+	substr := &Substring{}
+	substr.Add("a")
+	substr.Add("b")
+	substr.Add("c")
+
+	expected := "abc"
+	got := substr.String()
+	if got != expected {
+		msg := fmt.Sprintf("Expected %s, got %s", expected, got)
+		t.Error(msg)
+	}
+}
