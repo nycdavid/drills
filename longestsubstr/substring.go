@@ -1,6 +1,7 @@
 package longestsubstr
 
 import (
+	"errors"
 	"strings"
 )
 
@@ -36,4 +37,16 @@ func (sub *Substring) Count() int {
 
 func (sub *Substring) String() string {
 	return strings.Join(sub.els, "")
+}
+
+func (sub *Substring) Find(el string) (int, error) {
+	if len(sub.els) == 0 {
+		return -1, errors.New("sub.els is empty")
+	}
+	for idx, char := range sub.els {
+		if char == el {
+			return idx, nil
+		}
+	}
+	return -1, nil
 }

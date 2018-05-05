@@ -79,3 +79,20 @@ func TestString(t *testing.T) {
 		t.Error(msg)
 	}
 }
+
+func TestFind(t *testing.T) {
+	substr := &Substring{}
+	substr.Add("a")
+	substr.Add("b")
+
+	expected := 1
+	got, err := substr.Find("b")
+	if err != nil {
+		t.Error(err)
+	}
+
+	if expected != got {
+		msg := fmt.Sprintf("Expected index to be %d, got %d", expected, got)
+		t.Error(msg)
+	}
+}

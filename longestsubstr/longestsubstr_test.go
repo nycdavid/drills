@@ -26,15 +26,13 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 }
 
 func TestContinueAfterDuplicateChar(t *testing.T) {
-	// cases := map[string]int{
-	// 	"anviaj": 5,
-	// "anviajbc":        7,
-	// "anviajbcapolice": 6,
-	// }
 	var expected interface{}
 	var got interface{}
 	cases := []map[string]interface{}{
 		{"str": "anviaj", "length": 5, "winningSubstr": "nviaj"},
+		{"str": "bb", "length": 1, "winningSubstr": "b"},
+		{"str": "anviajbcapolice", "length": 8, "winningSubstr": "jbcapoli"},
+		{"str": "ggububgvfk", "length": 6, "winningSubstr": "ubgvfk"},
 	}
 	for _, testcase := range cases {
 		length, substr := lngthOfLongestSubstring(testcase["str"].(string))
