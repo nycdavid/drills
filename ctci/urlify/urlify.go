@@ -2,7 +2,6 @@ package urlify
 
 import (
 	"bytes"
-	"fmt"
 )
 
 func Urlify(str string, length int) string {
