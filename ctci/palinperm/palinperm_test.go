@@ -15,7 +15,7 @@ func TestPalindromePermutation(t *testing.T) {
 		{"str": "rrrrrr", "res": true},
 		{"str": "Raddar", "res": true},
 		{"str": "Raddat", "res": false},
-		{"str": "aadda", "res": false},
+		{"str": "ccdba", "res": false},
 		{"str": "rrrrr", "res": true},
 	}
 
