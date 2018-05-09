@@ -2,27 +2,40 @@ package longestsubstr
 
 import ()
 
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 func lngthOfLongestSubstring(str string) (int, *Substring) {
-	substr := &Substring{}
-	recordHolder := substr
-	for _, chr := range str {
-		el := string(chr)
-		if !substr.Exists(el) {
-			substr.Add(el)
+	lngth := len(str)
+	occs := make(map[rune]bool)
+	var i, j, ans int
+	for i < lngth && j < lngth {
+		chr := str[j]
+		if occs[rune(chr)] == false {
+			occs[rune(chr)] = true
+			ans = Max(ans, j-i+1)
+			j++
 		} else {
-			if substr.Count() >= recordHolder.Count() {
-				recordHolder = substr
-			}
-			substr = &Substring{}
-			idxOfDupe, _ := recordHolder.Find(el)
-			startIdx := idxOfDupe + 1
-			substr.els = recordHolder.els[startIdx:len(recordHolder.els)]
-			substr.Add(el)
+			i++
 		}
 	}
-	if recordHolder.Count() > substr.Count() {
-		return recordHolder.Count(), recordHolder
-	} else {
-		return substr.Count(), substr
+	ans = Max(ans, len(occs))
+	return ans, &Substring{}
+}
+
+func allUnique(str string) bool {
+	hsh := make(map[rune]int)
+	for _, chr := range str {
+		hsh[chr]++
 	}
+	for _, ct := range hsh {
+		if ct != 1 {
+			return false
+		}
+	}
+	return true
 }
