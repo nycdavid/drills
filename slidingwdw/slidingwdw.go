@@ -1,4 +1,4 @@
-package longestsubstr
+package slidingwdw
 
 import ()
 
@@ -34,9 +34,4 @@ func Max(a, b int) int {
 		return a
 	}
 	return b
-}
-
-func lengthOfLongestSubstring(str string) int {
-	wdw := &SlidingWdw{String: str}
-	return wdw.LengthOfLongest()
 }
