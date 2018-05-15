@@ -10,16 +10,16 @@ func longestPalindrome(s string) string {
 		i := idx
 		j := idx
 		ln := 1
-		for i > 0 && j < len(s) {
-			i--
-			j++
-			if s[i] == s[j] {
-				ln += 2
-			}
+		if i == 0 || j == len(s)-1 {
+			caps[idx] = ln
+			continue
+		}
+		i--
+		j++
+		if s[i] == s[j] {
+			ln = ln + 2
 			caps[idx] = ln
 		}
-		caps[idx] = ln
 	}
-	fmt.Println(caps)
 	return ""
 }
