@@ -5,21 +5,16 @@ import (
 )
 
 func longestPalindrome(s string) string {
-	caps := make([]int, len(s))
-	for idx := range s {
-		i := idx
-		j := idx
-		ln := 1
-		if i == 0 || j == len(s)-1 {
-			caps[idx] = ln
-			continue
-		}
-		i--
-		j++
-		if s[i] == s[j] {
-			ln = ln + 2
-			caps[idx] = ln
-		}
-	}
+	s1 := s
+	s2 := Reverse(s)
+	fmt.Println(s1, s2)
 	return ""
+}
+
+func Reverse(s string) string {
+	r := []rune(s)
+	for i, j := 0, len(r)-1; i < len(r)/2; i, j = i+1, j-1 {
+		r[i], r[j] = r[j], r[i]
+	}
+	return string(r)
 }
