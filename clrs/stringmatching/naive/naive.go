@@ -23,15 +23,17 @@ func NewNaiveMatcher(str string, p Printer) *NaiveMatcher {
 	return &NaiveMatcher{str: str, p: StdoutPrinter{}}
 }
 
-func (nm *NaiveMatcher) Find(pattern string) (bool, int) {
+func (nm *NaiveMatcher) Find(pattern string) bool {
 	t := nm.lenT()
 	p := len(pattern)
-	for s := 0; s < t-p; s++ {
+	var found bool
+	for s := 0; s < t-p+1; s++ {
 		if pattern[0:p] == nm.str[s:s+p] {
-			nm.p.Println(fmt.Sprintf("Pattern occurs with shift %d", s))
+			nm.p.Println(fmt.Sprintf("Pattern occurs with shift %d\n", s))
+			found = true
 		}
 	}
-	return false, 0
+	return found
 }
 
 func (nm *NaiveMatcher) lenT() int {

@@ -3,6 +3,7 @@ package naive
 import (
 	"bytes"
 	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -20,18 +21,15 @@ func (bp BufferPrinter) Println(a ...interface{}) (int, error) {
 func TestNaiveStringMatcher(t *testing.T) {
 	var buf bytes.Buffer
 	bp := BufferPrinter{buf: &buf}
-	mat := &NaiveMatcher{str: "abcdefg", p: bp}
-	exists, shift := mat.Find("bc")
+	mat := &NaiveMatcher{str: "abcdefgbc", p: bp}
+	exists := mat.Find("bc")
 
 	if exists != true {
 		t.Error("Expected to find substring")
 	}
-	if shift != 1 {
-		t.Error("Expected shift to be 1")
-	}
-	expected := "Pattern occurs with shift 1"
+	expected := "Pattern occurs with shift 1\nPattern occurs with shift 7"
 	got := buf.String()
-	if got != expected {
+	if strings.TrimSpace(got) != strings.TrimSpace(expected) {
 		msg := fmt.Sprintf("Expected string to be %s, got %s", expected, got)
 		t.Error(msg)
 	}
