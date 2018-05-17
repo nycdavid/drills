@@ -27,7 +27,7 @@ func (nm *NaiveMatcher) Find(pattern string) bool {
 	t := nm.lenT()
 	p := len(pattern)
 	var found bool
-	for s := 0; s < t-p+1; s++ {
+	for s := 0; s <= t-p; s++ {
 		if pattern[0:p] == nm.str[s:s+p] {
 			nm.p.Println(fmt.Sprintf("Pattern occurs with shift %d\n", s))
 			found = true
